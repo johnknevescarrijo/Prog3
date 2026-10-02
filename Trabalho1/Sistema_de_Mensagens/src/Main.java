@@ -48,7 +48,7 @@ public class Main {
         ));
 
         listaMensagens.add(new MensagemFax(
-                "(11) 3222-1000",
+                "(66) 3222-1000",
                 "(11) 3333-2000",
                 "Contrato assinado em anexo.",
                 3
@@ -79,7 +79,7 @@ public class Main {
         ));
 
         listaMensagens.add(new MensagemWhatsApp(
-                "+55 31 98888-9999",
+                "+55 66 98888-9999",
                 "+55 31 90000-0000",
                 "Oi, voce recebeu o documento?",
                 false // Destinatario sem conta no WhatsApp
@@ -118,7 +118,14 @@ public class Main {
                 7050.0,
                 false // Estacao sem resposta de sinal
         ));
-
+        
+        listaMensagens.add(new MensagemFumaca(
+        		"eu",
+        		"alguem",
+        		"Fumaca",
+        		true,
+        		true
+        		));
         // Envio de todas as mensagens usando polimorfismo
         System.out.println(">>> 1. ENVIANDO TODAS AS MENSAGENS COM POLIMORFISMO (enviar()):\n");
         int contador = 1;
@@ -142,7 +149,7 @@ public class Main {
         mensagensInvalidas.add(new MensagemEmail("dev@empresa.com", "cliente@empresa.com", "", "Texto do email"));
 
         // 2. SMS sem operadora informada
-        mensagensInvalidas.add(new MensagemSMS("(11) 98765-4321", "(11) 91234-5678", "Codigo 123", ""));
+        mensagensInvalidas.add(new MensagemSMS("(66) 98765-4321", "(11) 91234-5678", "Codigo 123", ""));
 
         // 3. WhatsApp com numero de destinatario invalido (< 8 digitos)
         mensagensInvalidas.add(new MensagemWhatsApp("+55 11 99999-1111", "123", "Ola"));
@@ -154,7 +161,7 @@ public class Main {
         mensagensInvalidas.add(new MensagemCorreio("Remetente", "Destinatario", "Encomenda", "", "SEDEX"));
 
         // 6. Fax com quantidade de paginas zerada
-        mensagensInvalidas.add(new MensagemFax("(11) 3222-1000", "(11) 3333-2000", "Relatorio", 0));
+        mensagensInvalidas.add(new MensagemFax("(66) 3222-1000", "(11) 3333-2000", "Relatorio", 0));
 
         // 7. Morse com frequencia de transmissao invalida (negativa)
         mensagensInvalidas.add(new MensagemMorse("Estacao Alpha", "Navio Bravo", "... --- ...", -500.0));
