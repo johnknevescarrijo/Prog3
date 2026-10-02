@@ -1,4 +1,3 @@
-// Subclasse concreta para envio em Codigo Morse
 public class MensagemMorse extends Mensagem {
 
     private double frequenciaKhz;
@@ -37,6 +36,7 @@ public class MensagemMorse extends Mensagem {
         if (!isDestinatarioEncontrado()) {
             NaoRecebido();
         } else {
+        	registrarSucesso();
             System.out.println("  Status: Sinal recebido e confirmado com clareza!");
             System.out.println("  CW / Texto: \"" + getConteudo() + "\"");
         }
@@ -44,6 +44,7 @@ public class MensagemMorse extends Mensagem {
 
     @Override
     public void NaoRecebido() {
+    	registrarFalha();
         System.out.println("  [FALHA DE ENTREGA - CODIGO MORSE]");
         System.out.println("  Estacao receptora '" + getDestinatario() + "' nao encontrada na frequencia " + this.frequenciaKhz + " kHz.");
         System.out.println("  Motivo: Sem resposta de escuta ou interferencia.");

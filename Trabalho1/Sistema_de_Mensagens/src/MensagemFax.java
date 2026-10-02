@@ -1,4 +1,3 @@
-// Subclasse concreta para envio de Fax
 public class MensagemFax extends Mensagem {
 
     private int numeroPaginas;
@@ -37,6 +36,7 @@ public class MensagemFax extends Mensagem {
         if (!isDestinatarioEncontrado()) {
             NaoRecebido();
         } else {
+        	registrarSucesso();
             System.out.println("  Status: Transmissao de fax concluida com sinal OK!");
             System.out.println("  Conteudo impresso remotamente: \"" + getConteudo() + "\"");
         }
@@ -44,6 +44,7 @@ public class MensagemFax extends Mensagem {
 
     @Override
     public void NaoRecebido() {
+    	registrarFalha();
         System.out.println("  [FALHA DE ENTREGA - FAX]");
         System.out.println("  Terminal '" + getDestinatario() + "' nao respondeu ou linha ocupada.");
         System.out.println("  Relatorio de erro de transmissao emitido para: " + getRemetente());

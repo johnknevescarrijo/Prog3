@@ -1,4 +1,3 @@
-// Subclasse concreta para envio de Telegrama
 public class MensagemTelegrama extends Mensagem {
 
     private String agenciaExpedidora;
@@ -49,6 +48,7 @@ public class MensagemTelegrama extends Mensagem {
         if (!isDestinatarioEncontrado()) {
             NaoRecebido();
         } else {
+        	registrarSucesso();
             System.out.println("  Status: Telegrama impresso e entregue via mensageiro!");
             System.out.println("  Texto: \"" + getConteudo() + "\"");
         }
@@ -56,6 +56,7 @@ public class MensagemTelegrama extends Mensagem {
 
     @Override
     public void NaoRecebido() {
+    	registrarFalha();
         System.out.println("  [FALHA DE ENTREGA - TELEGRAMA]");
         System.out.println("  Destinatario: '" + getDestinatario() + "' nao localizado no endereco informado.");
         System.out.println("  Agencia expedidora informada: " + this.agenciaExpedidora);

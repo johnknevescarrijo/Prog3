@@ -1,11 +1,13 @@
-// Superclasse abstrata base do Sistema de Mensagens (Aulas 4 e 5)
 public abstract class Mensagem {
 
     private String destinatario;
     private String conteudo;
     private String remetente;
     private boolean destinatarioEncontrado;
-
+    public enum StatusEnvio{PENDENTE,FALHA,SUCESSO};
+    private StatusEnvio status = StatusEnvio.PENDENTE;
+    private static int num_mem_sucesso = 0;
+    private static int num_mem_falha = 0;
     // Construtor padrao
     public Mensagem() {
     }
@@ -26,16 +28,16 @@ public abstract class Mensagem {
         this.destinatarioEncontrado = destinatarioEncontrado;
     }
 
-    // Metodos abstratos exigidos no enunciado do Trabalho 1
+    // Metodos abstratos
     public abstract void enviar();
     public abstract void NaoRecebido();
 
-    // Metodo auxiliar com convensao camelCase (padrao da Aula 2)
+    // Metodo auxiliar
     public void naoRecebido() {
         this.NaoRecebido();
     }
 
-    // Validacao basica dos dados utilizando excecao padrao (Aula 5)
+    // Validacao dos dados
     public void validarDados() throws IllegalArgumentException {
         if (this.remetente == null || this.remetente.trim().length() == 0) {
             throw new IllegalArgumentException("Remetente nao pode ser nulo ou vazio.");
@@ -46,6 +48,26 @@ public abstract class Mensagem {
         if (this.conteudo == null || this.conteudo.trim().length() == 0) {
             throw new IllegalArgumentException("Conteudo da mensagem nao pode ser nulo ou vazio.");
         }
+    }
+    
+    public static void exibirRelatorioGeral(){
+    	 System.out.println("\n========================================");
+         System.out.println("       RELATORIO GERAL DE ENVIOS        ");
+         System.out.println("========================================");
+         System.out.println("  Mensagens com Sucesso : " + num_mem_sucesso);
+         System.out.println("  Mensagens com Falha   : " + num_mem_falha);
+         System.out.println("  Total de Mensagens    : " + (num_mem_sucesso + num_mem_falha));
+         System.out.println("========================================\n");
+    	  }
+    
+    protected void registrarSucesso() {
+    	num_mem_sucesso++;
+    	this.status = StatusEnvio.SUCESSO;
+    }
+    
+    protected void registrarFalha() {
+    	num_mem_falha++;
+    	this.status = StatusEnvio.FALHA;
     }
 
     // Getters e Setters
@@ -68,7 +90,12 @@ public abstract class Mensagem {
     public String getRemetente() {
         return remetente;
     }
-
+    
+    public StatusEnvio getStatus() {
+    	return status;
+    }
+    
+    
     public void setRemetente(String remetente) {
         this.remetente = remetente;
     }

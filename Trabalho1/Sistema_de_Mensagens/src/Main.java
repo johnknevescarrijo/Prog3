@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-// Classe principal para execucao e teste do Sistema de Mensagens (Aulas 1 a 5)
 public class Main {
 
     public static void main(String[] args) {
@@ -8,13 +7,13 @@ public class Main {
         System.out.println("           TRABALHO 1 - SISTEMA POLIMORFICO DE MENSAGENS                       ");
         System.out.println("================================================================================\n");
 
-        // 1. Criacao da lista polimorfica (Aulas 3 e 4)
+        // Inicializacao da lista polimorfica de mensagens
         ArrayList<Mensagem> listaMensagens = new ArrayList<>();
 
-        // --- Casos de Sucesso no Envio ---
+        // Casos de sucesso no envio
         listaMensagens.add(new MensagemEmail(
                 "professor@faculdade.edu.br",
-                "aluno.prog3@faculdade.edu.br",
+                "aluno.prog3@sou.ufmt.br",
                 "Entrega do Trabalho 1",
                 "Lembrete: o trabalho de Programacao 3 deve ser entregue esta semana."
         ));
@@ -62,7 +61,7 @@ public class Main {
                 14200.0
         ));
 
-        // --- Casos de Nao Recebimento / Destinatario Nao Encontrado (Exigencia do Trabalho) ---
+        // Casos de falha / destinatario nao encontrado
         listaMensagens.add(new MensagemEmail(
                 "suporte@empresa.com",
                 "destinatario_sem_arroba",
@@ -120,33 +119,58 @@ public class Main {
                 false // Estacao sem resposta de sinal
         ));
 
-        // 2. Envio de todas as mensagens usando polimorfismo (Aula 4)
+        // Envio de todas as mensagens usando polimorfismo
         System.out.println(">>> 1. ENVIANDO TODAS AS MENSAGENS COM POLIMORFISMO (enviar()):\n");
         int contador = 1;
         for (Mensagem msg : listaMensagens) {
             System.out.println("[" + contador + "/" + listaMensagens.size() + "] " + msg.getClass().getSimpleName());
             msg.enviar();
+            System.out.println("  Status do envio (Enum): " + msg.getStatus());
             System.out.println("--------------------------------------------------------------------------------");
             contador++;
         }
+        
+        Mensagem.exibirRelatorioGeral();
 
-        // 3. Demonstracao do tratamento de excecoes com try-catch-finally (Aula 5)
-        System.out.println("\n>>> 2. DEMONSTRACAO DE TRATAMENTO DE EXCECOES (try-catch-finally - Aula 5):");
-        System.out.println("Simulando envio com dados invalidos para demonstrar IllegalArgumentException...\n");
+        // Demonstracao do tratamento de excecoes com try-catch-finally
+        System.out.println("\n>>> 2. DEMONSTRACAO DE TRATAMENTO DE EXCECOES (try-catch-finally):");
+        System.out.println("Testando regras e excecoes para todas as 7 classes com lista polimorfica...\n");
 
-        try {
-            System.out.println("--- Teste: Criando e enviando mensagem com remetente vazio ---");
-            Mensagem msgInvalida = new MensagemEmail(
-                    "", // Remetente vazio (invalido)
-                    "contato@empresa.com",
-                    "Assunto de Teste",
-                    "Corpo da mensagem de teste."
-            );
-            msgInvalida.enviar();
-        } catch (IllegalArgumentException e) {
-            System.out.println("  [EXCECAO CAPTURADA]: " + e.getMessage());
-        } finally {
-            System.out.println("  [FINALLY]: Bloco finalizado com sucesso.");
+        ArrayList<Mensagem> mensagensInvalidas = new ArrayList<>();
+
+        // 1. Email sem assunto
+        mensagensInvalidas.add(new MensagemEmail("dev@empresa.com", "cliente@empresa.com", "", "Texto do email"));
+
+        // 2. SMS sem operadora informada
+        mensagensInvalidas.add(new MensagemSMS("(11) 98765-4321", "(11) 91234-5678", "Codigo 123", ""));
+
+        // 3. WhatsApp com numero de destinatario invalido (< 8 digitos)
+        mensagensInvalidas.add(new MensagemWhatsApp("+55 11 99999-1111", "123", "Ola"));
+
+        // 4. Telegrama sem agencia expedidora
+        mensagensInvalidas.add(new MensagemTelegrama("Remetente", "Destinatario", "Texto urgente", "", true));
+
+        // 5. Correio sem CEP postal
+        mensagensInvalidas.add(new MensagemCorreio("Remetente", "Destinatario", "Encomenda", "", "SEDEX"));
+
+        // 6. Fax com quantidade de paginas zerada
+        mensagensInvalidas.add(new MensagemFax("(11) 3222-1000", "(11) 3333-2000", "Relatorio", 0));
+
+        // 7. Morse com frequencia de transmissao invalida (negativa)
+        mensagensInvalidas.add(new MensagemMorse("Estacao Alpha", "Navio Bravo", "... --- ...", -500.0));
+
+        int contErro = 1;
+        for (Mensagem msgInvalida : mensagensInvalidas) {
+            System.out.println("--- Teste " + contErro + ": " + msgInvalida.getClass().getSimpleName() + " com dados invalidos ---");
+            try {
+                msgInvalida.enviar();
+            } catch (IllegalArgumentException e) {
+                System.out.println("  [EXCECAO CAPTURADA]: " + e.getMessage());
+            } finally {
+                System.out.println("  [FINALLY]: Bloco finalizado com sucesso.");
+            }
+            System.out.println();
+            contErro++;
         }
 
         System.out.println("\n================================================================================");

@@ -1,4 +1,3 @@
-// Subclasse concreta para envio de SMS
 public class MensagemSMS extends Mensagem {
 
     private String operadora;
@@ -37,6 +36,7 @@ public class MensagemSMS extends Mensagem {
         if (!isDestinatarioEncontrado()) {
             NaoRecebido();
         } else {
+        	registrarSucesso();
             System.out.println("  Status: SMS entregue com sucesso ao aparelho!");
             System.out.println("  Texto: \"" + getConteudo() + "\"");
         }
@@ -44,6 +44,7 @@ public class MensagemSMS extends Mensagem {
 
     @Override
     public void NaoRecebido() {
+    	registrarFalha();
         System.out.println("  [FALHA DE ENTREGA - SMS]");
         System.out.println("  Destinatario: '" + getDestinatario() + "' nao encontrado na rede da " + this.operadora + ".");
         System.out.println("  Motivo: Numero inexistente ou fora de area de cobertura.");

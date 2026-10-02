@@ -1,4 +1,3 @@
-// Subclasse concreta para envio pelos Correios
 public class MensagemCorreio extends Mensagem {
 
     private String cep;
@@ -52,6 +51,7 @@ public class MensagemCorreio extends Mensagem {
         if (!isDestinatarioEncontrado() || this.cep.equals("00000-000")) {
             NaoRecebido();
         } else {
+        	registrarSucesso();
             System.out.println("  Status: Correspondencia entregue com sucesso!");
             System.out.println("  Conteudo: \"" + getConteudo() + "\"");
         }
@@ -59,6 +59,7 @@ public class MensagemCorreio extends Mensagem {
 
     @Override
     public void NaoRecebido() {
+    	registrarFalha();
         System.out.println("  [FALHA DE ENTREGA - CORREIOS]");
         System.out.println("  Destinatario '" + getDestinatario() + "' no CEP " + this.cep + " nao encontrado.");
         System.out.println("  Motivo: Endereco incompleto ou destinatario ausente apos tentativas.");
