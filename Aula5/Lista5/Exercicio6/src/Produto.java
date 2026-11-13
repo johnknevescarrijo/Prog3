@@ -1,21 +1,10 @@
-/**
- * Representa um produto no estoque.
- * Valida se preço ou quantidade são negativos lançando IllegalArgumentException.
- */
+// Classe Produto com validação de preço e quantidade
 public class Produto {
 
 	private String descricao;
 	private double preco;
 	private int quantidade;
 
-	/**
-	 * Construtor da classe Produto.
-	 * 
-	 * @param descricao Nome ou descrição do produto
-	 * @param preco Preço unitário do produto (deve ser >= 0)
-	 * @param quantidade Quantidade disponível em estoque (deve ser >= 0)
-	 * @throws IllegalArgumentException Caso preço ou quantidade sejam negativos
-	 */
 	public Produto(String descricao, double preco, int quantidade) throws IllegalArgumentException {
 		if (descricao == null || descricao.trim().isEmpty()) {
 			throw new IllegalArgumentException("A descrição do produto não pode ser vazia.");
@@ -44,11 +33,6 @@ public class Produto {
 		return quantidade;
 	}
 
-	/**
-	 * Calcula o valor total deste produto no estoque.
-	 * 
-	 * @return preco * quantidade
-	 */
 	public double calcularTotalEstoque() {
 		return this.preco * this.quantidade;
 	}

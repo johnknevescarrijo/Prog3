@@ -1,6 +1,4 @@
-/**
- * Exceção personalizada para tratamento de idade negativa ou inconsistente.
- */
+// Exceção para idade inválida
 public class IdadeInvalidaException extends Exception {
 
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,3 @@
-/**
- * Representa um Aluno cadastrado no sistema acadêmico.
- */
 public class Aluno {
 
 	private String nome;
