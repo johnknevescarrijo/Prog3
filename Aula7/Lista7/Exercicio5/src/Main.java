@@ -3,7 +3,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 // Exercicio 5 - Contagem de linhas, palavras e caracteres
@@ -25,7 +24,7 @@ public class Main {
 
 		try {
 			fis = new FileInputStream(caminho);
-			isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+			isr = new InputStreamReader(fis);
 			br = new BufferedReader(isr);
 
 			String linha = br.readLine();

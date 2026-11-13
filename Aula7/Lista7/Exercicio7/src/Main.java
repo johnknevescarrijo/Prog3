@@ -6,10 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 // Exercicio 7 - Cadastro de alunos com persistência em arquivo
@@ -27,7 +25,7 @@ public class Main {
 		try {
 			// append = true para adicionar no fim do arquivo sem apagar os anteriores
 			FileOutputStream fos = new FileOutputStream(ARQUIVO_ALUNOS, true);
-			ps = new PrintStream(fos, true, StandardCharsets.UTF_8);
+			ps = new PrintStream(fos, true);
 			ps.println(aluno.toLinhaArquivo());
 
 			if (ps.checkError()) {
@@ -57,7 +55,7 @@ public class Main {
 
 		try {
 			fis = new FileInputStream(arquivo);
-			isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+			isr = new InputStreamReader(fis);
 			br = new BufferedReader(isr);
 
 			String linha = br.readLine();
@@ -120,7 +118,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+		Scanner scanner = new Scanner(System.in);
 		String opcao = "";
 
 		while (!opcao.equals("0")) {

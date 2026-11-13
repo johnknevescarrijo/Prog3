@@ -40,7 +40,7 @@ public class Aluno {
 
 	// Formata os dados para gravar no arquivo separados por ;
 	public String toLinhaArquivo() {
-		return nome + ";" + curso + ";" + String.format(java.util.Locale.US, "%.2f", nota);
+		return nome + ";" + curso + ";" + nota;
 	}
 
 	// Lê uma linha do arquivo e cria um objeto Aluno
