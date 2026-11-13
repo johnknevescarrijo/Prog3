@@ -8,16 +8,10 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-// Atividade 1: Leitura de Arquivo de Texto
-// Solicita ao usuário o caminho de um arquivo de texto.
-// Utiliza FileInputStream, InputStreamReader e BufferedReader para abrir o arquivo,
-// ler seu conteúdo linha por linha e exibi-lo no console.
-// Trata possíveis erros com try-catch (FileNotFoundException, IOException),
-// fecha corretamente os fluxos e apresenta mensagens claras caso o arquivo não possa ser aberto.
+// Exercicio 1 - Leitura de arquivo de texto
 public class Main {
 
-	// Realiza a leitura linha por linha utilizando o encadeamento de fluxos da Aula 7:
-	// FileInputStream (leitura de bytes) -> InputStreamReader (conversão byte para char) -> BufferedReader (buffer de linhas)
+	// Lê o arquivo linha por linha usando FileInputStream, InputStreamReader e BufferedReader
 	public static boolean lerArquivo(String caminhoArquivo) {
 		if (caminhoArquivo == null || caminhoArquivo.trim().isEmpty()) {
 			System.out.println("  [ERRO] O caminho do arquivo não pode ser vazio.");
@@ -64,7 +58,7 @@ public class Main {
 			System.out.println("  Detalhes: " + e.getMessage());
 			return false;
 		} finally {
-			// Fechamento seguro dos fluxos abertos
+			// Fecha os fluxos abertos
 			try {
 				if (br != null) {
 					br.close();
@@ -79,7 +73,6 @@ public class Main {
 		}
 	}
 
-	// Executa demonstração automática com um arquivo de teste e um cenário de arquivo inexistente
 	public static void executarDemonstracao() {
 		System.out.println("==================================================");
 		System.out.println("        EXECUÇÃO DA DEMONSTRAÇÃO AUTOMÁTICA       ");
@@ -89,7 +82,7 @@ public class Main {
 		File arquivoDemo = new File(nomeArquivoDemo);
 		arquivoDemo.deleteOnExit();
 
-		// Criação de arquivo de exemplo para validação imediata
+		// Cria um arquivo de exemplo para teste
 		try (PrintStream ps = new PrintStream(arquivoDemo, StandardCharsets.UTF_8)) {
 			ps.println("Programação III - Aula 7: Java.IO");
 			ps.println("Leitura com encadeamento de fluxos:");
@@ -102,11 +95,9 @@ public class Main {
 			System.out.println("Falha ao gerar arquivo de demonstração: " + e.getMessage());
 		}
 
-		// Teste 1: Leitura bem-sucedida do arquivo criado
 		System.out.println("\n[Teste 1] Leitura de arquivo existente:");
 		lerArquivo(nomeArquivoDemo);
 
-		// Teste 2: Tratamento de erro com arquivo inexistente
 		System.out.println("\n[Teste 2] Leitura de arquivo inexistente para teste do try-catch:");
 		lerArquivo("arquivo_que_nao_existe_aula7.txt");
 
@@ -116,10 +107,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		// Bateria de demonstração
 		executarDemonstracao();
 
-		// Modo interativo via teclado
+		// Entrada do usuário
 		System.out.println("\n==================================================");
 		System.out.println("                 MODO INTERATIVO                  ");
 		System.out.println("==================================================");

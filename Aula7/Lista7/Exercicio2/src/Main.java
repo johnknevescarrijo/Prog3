@@ -8,16 +8,12 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-// Atividade 2: Registro de Texto em Arquivo
-// Lê várias linhas digitadas pelo usuário utilizando Scanner e grava em anotacoes.txt com PrintStream.
-// O programa grava cada entrada em uma linha diferente e encerra quando o usuário digita "FIM"
-// (sem gravar essa palavra no arquivo).
-// Ao final, informa a conclusão da gravação e verifica possíveis problemas via checkError().
+// Exercicio 2 - Gravação de texto em arquivo com PrintStream
 public class Main {
 
 	public static final String NOME_ARQUIVO_PADRAO = "anotacoes.txt";
 
-	// Grava fluxo de linhas fornecidas por um Scanner em um arquivo destino utilizando PrintStream
+	// Grava as linhas digitadas no arquivo até receber "FIM"
 	public static boolean gravarLinhas(Scanner entrada, String nomeArquivo) {
 		File arquivo = new File(nomeArquivo);
 		System.out.println("\n--------------------------------------------------");
@@ -28,13 +24,11 @@ public class Main {
 		int totalLinhasGravadas = 0;
 
 		try {
-			// Criação do PrintStream passando o nome/arquivo diretamente, conforme ensinado na Aula 7
 			ps = new PrintStream(arquivo, StandardCharsets.UTF_8);
 
 			while (entrada.hasNextLine()) {
 				String linha = entrada.nextLine();
 
-				// Condição de término: palavra FIM (não deve ser gravada)
 				if (linha.trim().equalsIgnoreCase("FIM")) {
 					break;
 				}
@@ -43,7 +37,6 @@ public class Main {
 				totalLinhasGravadas++;
 			}
 
-			// Verifica se ocorreu alguma exceção interna engolida pelo PrintStream
 			boolean teveErro = ps.checkError();
 			if (teveErro) {
 				System.out.println("  [ALERTA] O PrintStream detectou um erro interno durante a escrita.");
@@ -70,7 +63,6 @@ public class Main {
 		}
 	}
 
-	// Método auxiliar para exibir o conteúdo gravado para conferência
 	public static void exibirConteudoArquivo(String nomeArquivo) {
 		File arquivo = new File(nomeArquivo);
 		if (!arquivo.exists()) {
@@ -95,7 +87,6 @@ public class Main {
 		}
 	}
 
-	// Executa uma demonstração simulada com Scanner em memória
 	public static void executarDemonstracao() {
 		System.out.println("==================================================");
 		System.out.println("        EXECUÇÃO DA DEMONSTRAÇÃO AUTOMÁTICA       ");
@@ -115,7 +106,6 @@ public class Main {
 		gravarLinhas(scannerSimulado, nomeArquivoDemo);
 		scannerSimulado.close();
 
-		// Exibe conteúdo gravado para validação
 		exibirConteudoArquivo(nomeArquivoDemo);
 
 		System.out.println("==================================================");
@@ -124,10 +114,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		// Bateria de testes automatizados
 		executarDemonstracao();
 
-		// Modo interativo via teclado
+		// Entrada do usuário
 		System.out.println("\n==================================================");
 		System.out.println("                 MODO INTERATIVO                  ");
 		System.out.println("==================================================");

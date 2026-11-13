@@ -1,4 +1,4 @@
-// Representa a entidade Aluno para persistência em arquivo de texto (alunos.txt)
+// Classe Aluno para salvar e ler do arquivo alunos.txt
 public class Aluno {
 
 	private String nome;
@@ -38,12 +38,12 @@ public class Aluno {
 		this.nota = nota;
 	}
 
-	// Formata o registro do aluno como linha de texto delimitada por ponto e vírgula
+	// Formata os dados para gravar no arquivo separados por ;
 	public String toLinhaArquivo() {
 		return nome + ";" + curso + ";" + String.format(java.util.Locale.US, "%.2f", nota);
 	}
 
-	// Converte uma linha lida do arquivo em um objeto Aluno
+	// Lê uma linha do arquivo e cria um objeto Aluno
 	public static Aluno fromLinhaArquivo(String linha) {
 		if (linha == null || linha.trim().isEmpty()) {
 			return null;
