@@ -28,39 +28,39 @@ public class Main {
 			scanner.nextLine();
 
 			switch (opcao) {
-				case 1 -> {
+				case 1:
 					System.out.print("Nome do produto: ");
-					String nome = scanner.nextLine().trim();
+					String nomeCadastro = scanner.nextLine().trim();
 					System.out.print("Quantidade inicial: ");
 					if (scanner.hasNextInt()) {
 						int qtd = scanner.nextInt();
 						scanner.nextLine();
-						if (nome.isEmpty() || qtd < 0) {
+						if (nomeCadastro.isEmpty() || qtd < 0) {
 							System.out.println("Dados inválidos.");
-						} else if (estoque.containsKey(nome)) {
+						} else if (estoque.containsKey(nomeCadastro)) {
 							System.out.println("Produto já cadastrado.");
 						} else {
-							estoque.put(nome, qtd);
+							estoque.put(nomeCadastro, qtd);
 							System.out.println("Produto cadastrado.");
 						}
 					} else {
 						System.out.println("Quantidade inválida.");
 						scanner.nextLine();
 					}
-				}
-				case 2 -> {
+					break;
+				case 2:
 					System.out.print("Nome do produto: ");
-					String nome = scanner.nextLine().trim();
-					if (estoque.containsKey(nome)) {
-						System.out.println("Quantidade de " + nome + ": " + estoque.get(nome));
+					String nomeConsulta = scanner.nextLine().trim();
+					if (estoque.containsKey(nomeConsulta)) {
+						System.out.println("Quantidade de " + nomeConsulta + ": " + estoque.get(nomeConsulta));
 					} else {
 						System.out.println("Produto não encontrado no estoque.");
 					}
-				}
-				case 3 -> {
+					break;
+				case 3:
 					System.out.print("Nome do produto: ");
-					String nome = scanner.nextLine().trim();
-					if (!estoque.containsKey(nome)) {
+					String nomeAtualizar = scanner.nextLine().trim();
+					if (!estoque.containsKey(nomeAtualizar)) {
 						System.out.println("Produto não encontrado.");
 					} else {
 						System.out.print("Nova quantidade: ");
@@ -70,7 +70,7 @@ public class Main {
 							if (novaQtd < 0) {
 								System.out.println("A quantidade não pode ser negativa.");
 							} else {
-								estoque.put(nome, novaQtd);
+								estoque.put(nomeAtualizar, novaQtd);
 								System.out.println("Quantidade atualizada.");
 							}
 						} else {
@@ -78,18 +78,18 @@ public class Main {
 							scanner.nextLine();
 						}
 					}
-				}
-				case 4 -> {
+					break;
+				case 4:
 					System.out.print("Nome do produto para remover: ");
-					String nome = scanner.nextLine().trim();
-					if (estoque.containsKey(nome)) {
-						estoque.remove(nome);
+					String nomeRemover = scanner.nextLine().trim();
+					if (estoque.containsKey(nomeRemover)) {
+						estoque.remove(nomeRemover);
 						System.out.println("Produto removido.");
 					} else {
 						System.out.println("Produto não cadastrado.");
 					}
-				}
-				case 5 -> {
+					break;
+				case 5:
 					if (estoque.isEmpty()) {
 						System.out.println("Estoque vazio.");
 					} else {
@@ -97,9 +97,13 @@ public class Main {
 							System.out.println(item.getKey() + ": " + item.getValue() + " un.");
 						}
 					}
-				}
-				case 0 -> System.out.println("Saindo...");
-				default -> System.out.println("Opção inválida.");
+					break;
+				case 0:
+					System.out.println("Saindo...");
+					break;
+				default:
+					System.out.println("Opção inválida.");
+					break;
 			}
 		}
 

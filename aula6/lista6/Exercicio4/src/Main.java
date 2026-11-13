@@ -36,7 +36,7 @@ public class Main {
 			scanner.nextLine();
 
 			switch (opcao) {
-				case 1 -> {
+				case 1:
 					System.out.print("Título do livro: ");
 					String titulo = scanner.nextLine().trim();
 					if (titulo.isEmpty()) {
@@ -45,9 +45,11 @@ public class Main {
 						catalogo.add(titulo);
 						System.out.println("Livro adicionado.");
 					}
-				}
-				case 2 -> listarLivros(catalogo);
-				case 3 -> {
+					break;
+				case 2:
+					listarLivros(catalogo);
+					break;
+				case 3:
 					System.out.print("Título para pesquisar: ");
 					String busca = scanner.nextLine().trim().toLowerCase();
 					boolean encontrou = false;
@@ -60,8 +62,8 @@ public class Main {
 					if (!encontrou) {
 						System.out.println("Nenhum livro encontrado.");
 					}
-				}
-				case 4 -> {
+					break;
+				case 4:
 					listarLivros(catalogo);
 					if (!catalogo.isEmpty()) {
 						System.out.print("Índice para remover: ");
@@ -79,9 +81,13 @@ public class Main {
 							scanner.nextLine();
 						}
 					}
-				}
-				case 0 -> System.out.println("Saindo...");
-				default -> System.out.println("Opção inválida.");
+					break;
+				case 0:
+					System.out.println("Saindo...");
+					break;
+				default:
+					System.out.println("Opção inválida.");
+					break;
 			}
 		}
 

@@ -43,43 +43,49 @@ public class Main {
 			scanner.nextLine();
 
 			switch (opcao) {
-				case 1 -> {
+				case 1:
 					System.out.print("Nome: ");
-					String nome = scanner.nextLine().trim();
+					String nomeCadastro = scanner.nextLine().trim();
 					System.out.print("Idade: ");
 					if (scanner.hasNextInt()) {
 						int idade = scanner.nextInt();
 						scanner.nextLine();
-						pessoas.put(nome, idade);
+						pessoas.put(nomeCadastro, idade);
 						System.out.println("Pessoa cadastrada.");
 					} else {
 						System.out.println("Idade inválida.");
 						scanner.nextLine();
 					}
-				}
-				case 2 -> {
+					break;
+				case 2:
 					System.out.print("Nome para consultar: ");
-					String nome = scanner.nextLine().trim();
-					if (pessoas.containsKey(nome)) {
-						System.out.println(nome + " tem " + pessoas.get(nome) + " anos.");
+					String nomeConsulta = scanner.nextLine().trim();
+					if (pessoas.containsKey(nomeConsulta)) {
+						System.out.println(nomeConsulta + " tem " + pessoas.get(nomeConsulta) + " anos.");
 					} else {
 						System.out.println("Nome não cadastrado.");
 					}
-				}
-				case 3 -> {
+					break;
+				case 3:
 					System.out.print("Nome para remover: ");
-					String nome = scanner.nextLine().trim();
-					if (pessoas.containsKey(nome)) {
-						pessoas.remove(nome);
+					String nomeRemover = scanner.nextLine().trim();
+					if (pessoas.containsKey(nomeRemover)) {
+						pessoas.remove(nomeRemover);
 						System.out.println("Pessoa removida.");
 						exibirMapa(pessoas);
 					} else {
 						System.out.println("Nome não encontrado.");
 					}
-				}
-				case 4 -> exibirMapa(pessoas);
-				case 0 -> System.out.println("Saindo...");
-				default -> System.out.println("Opção inválida.");
+					break;
+				case 4:
+					exibirMapa(pessoas);
+					break;
+				case 0:
+					System.out.println("Saindo...");
+					break;
+				default:
+					System.out.println("Opção inválida.");
+					break;
 			}
 		}
 

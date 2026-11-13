@@ -52,10 +52,10 @@ public class Main {
 			scanner.nextLine();
 
 			switch (opcao) {
-				case 1 -> {
+				case 1:
 					System.out.print("Nome do aluno: ");
-					String nome = scanner.nextLine().trim();
-					if (nome.isEmpty()) {
+					String nomeCadastro = scanner.nextLine().trim();
+					if (nomeCadastro.isEmpty()) {
 						System.out.println("Nome inválido.");
 						break;
 					}
@@ -66,41 +66,47 @@ public class Main {
 						if (nota < 0.0 || nota > 10.0) {
 							System.out.println("A nota deve estar entre 0 e 10.");
 						} else {
-							if (!registro.containsKey(nome)) {
-								registro.put(nome, new ArrayList<>());
+							if (!registro.containsKey(nomeCadastro)) {
+								registro.put(nomeCadastro, new ArrayList<>());
 							}
-							registro.get(nome).add(nota);
+							registro.get(nomeCadastro).add(nota);
 							System.out.println("Nota adicionada.");
 						}
 					} catch (NumberFormatException e) {
 						System.out.println("Valor de nota inválido.");
 					}
-				}
-				case 2 -> {
+					break;
+				case 2:
 					System.out.print("Nome do aluno: ");
-					String nome = scanner.nextLine().trim();
-					if (registro.containsKey(nome)) {
-						List<Double> notas = registro.get(nome);
+					String nomeConsulta = scanner.nextLine().trim();
+					if (registro.containsKey(nomeConsulta)) {
+						List<Double> notas = registro.get(nomeConsulta);
 						System.out.printf("Notas de %s: %s | Média: %.2f\n",
-								nome, notas, calcularMedia(notas));
+								nomeConsulta, notas, calcularMedia(notas));
 					} else {
 						System.out.println("Aluno não encontrado.");
 					}
-				}
-				case 3 -> listarAlunos(registro);
-				case 4 -> {
+					break;
+				case 3:
+					listarAlunos(registro);
+					break;
+				case 4:
 					System.out.print("Nome do aluno para remover: ");
-					String nome = scanner.nextLine().trim();
-					if (registro.containsKey(nome)) {
-						registro.remove(nome);
+					String nomeRemover = scanner.nextLine().trim();
+					if (registro.containsKey(nomeRemover)) {
+						registro.remove(nomeRemover);
 						System.out.println("Aluno removido.");
 						listarAlunos(registro);
 					} else {
 						System.out.println("Aluno não encontrado.");
 					}
-				}
-				case 0 -> System.out.println("Saindo...");
-				default -> System.out.println("Opção inválida.");
+					break;
+				case 0:
+					System.out.println("Saindo...");
+					break;
+				default:
+					System.out.println("Opção inválida.");
+					break;
 			}
 		}
 
