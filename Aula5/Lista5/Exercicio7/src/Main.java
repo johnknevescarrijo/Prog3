@@ -22,7 +22,13 @@ public class Main {
 		} catch (NumberFormatException e) {
 			totalRejeitados++;
 			System.out.println("Cadastro rejeitado: idade ou nota em formato inválido.");
-		} catch (IdadeInvalidaException | NotaInvalidaException | IllegalArgumentException e) {
+		} catch (IdadeInvalidaException e) {
+			totalRejeitados++;
+			System.out.println("Cadastro rejeitado: " + e.getMessage());
+		} catch (NotaInvalidaException e) {
+			totalRejeitados++;
+			System.out.println("Cadastro rejeitado: " + e.getMessage());
+		} catch (IllegalArgumentException e) {
 			totalRejeitados++;
 			System.out.println("Cadastro rejeitado: " + e.getMessage());
 		} finally {
