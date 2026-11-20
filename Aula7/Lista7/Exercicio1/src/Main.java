@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-// Exercicio 1 - Leitura de arquivo de texto
 public class Main {
 
 	public static void main(String[] args) {

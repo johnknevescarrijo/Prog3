@@ -2,7 +2,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-// Exercicio 2 - Gravação de texto em arquivo com PrintStream
 public class Main {
 
 	public static void main(String[] args) {

@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Exercicio 4 - Cópia de arquivo byte a byte
 public class Main {
 
 	public static void main(String[] args) {
@@ -30,13 +29,12 @@ public class Main {
 			fis = new FileInputStream(arquivoOrigem);
 			fos = new FileOutputStream(destino);
 
-			byte[] buffer = new byte[4096];
-			int bytesLidos;
+			int byteLido;
 			long totalBytes = 0;
 
-			while ((bytesLidos = fis.read(buffer)) != -1) {
-				fos.write(buffer, 0, bytesLidos);
-				totalBytes += bytesLidos;
+			while ((byteLido = fis.read()) != -1) {
+				fos.write(byteLido);
+				totalBytes++;
 			}
 
 			System.out.println("Cópia concluída (" + totalBytes + " bytes copiados).");

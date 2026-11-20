@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Exercicio 7 - Cadastro de alunos com persistência em arquivo
 public class Main {
 
 	public static final String ARQUIVO_ALUNOS = "alunos.txt";
@@ -21,12 +19,15 @@ public class Main {
 			return;
 		}
 
+		List<Aluno> alunos = lerAlunos();
+		alunos.add(aluno);
+
 		PrintStream ps = null;
 		try {
-			// append = true para adicionar no fim do arquivo sem apagar os anteriores
-			FileOutputStream fos = new FileOutputStream(ARQUIVO_ALUNOS, true);
-			ps = new PrintStream(fos, true);
-			ps.println(aluno.toLinhaArquivo());
+			ps = new PrintStream(ARQUIVO_ALUNOS);
+			for (Aluno a : alunos) {
+				ps.println(a.toLinhaArquivo());
+			}
 
 			if (ps.checkError()) {
 				System.out.println("Erro ao gravar aluno no arquivo.");
@@ -99,7 +100,7 @@ public class Main {
 		}
 
 		for (Aluno a : alunos) {
-			System.out.printf("Nome: %s | Curso: %s | Nota: %.2f\n", a.getNome(), a.getCurso(), a.getNota());
+			System.out.printf("Nome: %s - Curso: %s - Nota: %.2f\n", a.getNome(), a.getCurso(), a.getNota());
 		}
 	}
 
@@ -137,7 +138,7 @@ public class Main {
 					System.out.print("Curso: ");
 					String curso = scanner.nextLine().trim();
 					System.out.print("Nota (0 a 10): ");
-					String notaStr = scanner.nextLine().trim().replace(',', '.');
+					String notaStr = scanner.nextLine().trim();
 					try {
 						double nota = Double.parseDouble(notaStr);
 						cadastrarAluno(new Aluno(nome, curso, nota));

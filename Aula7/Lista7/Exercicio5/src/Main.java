@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-// Exercicio 5 - Contagem de linhas, palavras e caracteres
 public class Main {
 
 	public static void main(String[] args) {
@@ -34,7 +33,12 @@ public class Main {
 
 				String linhaLimpa = linha.trim();
 				if (!linhaLimpa.isEmpty()) {
-					totalPalavras += linhaLimpa.split("\\s+").length;
+					String[] palavras = linhaLimpa.split(" ");
+					for (String palavra : palavras) {
+						if (!palavra.isEmpty()) {
+							totalPalavras++;
+						}
+					}
 				}
 
 				if (linha.length() > maiorLinha.length()) {

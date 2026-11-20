@@ -1,7 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
 
-// Exercicio 3 - Análise de arquivos e diretórios com File
 public class Main {
 
 	public static void main(String[] args) {
@@ -27,8 +26,11 @@ public class Main {
 				if (itens != null) {
 					System.out.println("Conteúdo do diretório:");
 					for (File item : itens) {
-						String tipo = item.isDirectory() ? "[DIR]" : "[ARQ]";
-						System.out.println(tipo + " " + item.getName());
+						if (item.isDirectory()) {
+							System.out.println("[DIR] " + item.getName());
+						} else {
+							System.out.println("[ARQ] " + item.getName());
+						}
 					}
 				}
 			}

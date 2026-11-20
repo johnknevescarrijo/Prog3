@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Exercicio 6 - Organização de arquivos e diretórios com File
 public class Main {
 
 	public static void main(String[] args) {
@@ -52,8 +51,11 @@ public class Main {
 							System.out.println("Diretório vazio.");
 						} else {
 							for (File item : itens) {
-								String tipo = item.isDirectory() ? "[DIR]" : "[ARQ]";
-								System.out.println(tipo + " " + item.getName());
+								if (item.isDirectory()) {
+									System.out.println("[DIR] " + item.getName());
+								} else {
+									System.out.println("[ARQ] " + item.getName());
+								}
 							}
 						}
 					}

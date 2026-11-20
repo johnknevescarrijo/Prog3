@@ -1,4 +1,3 @@
-// Classe Aluno para salvar e ler do arquivo alunos.txt
 public class Aluno {
 
 	private String nome;
@@ -38,12 +37,10 @@ public class Aluno {
 		this.nota = nota;
 	}
 
-	// Formata os dados para gravar no arquivo separados por ;
 	public String toLinhaArquivo() {
 		return nome + ";" + curso + ";" + nota;
 	}
 
-	// Lê uma linha do arquivo e cria um objeto Aluno
 	public static Aluno fromLinhaArquivo(String linha) {
 		if (linha == null || linha.trim().isEmpty()) {
 			return null;
@@ -65,6 +62,6 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return String.format("Aluno[nome='%s', curso='%s', nota=%.2f]", nome, curso, nota);
+		return "Aluno: " + nome + ", Curso: " + curso + ", Nota: " + nota;
 	}
 }
