@@ -1,7 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Exercicio 3 - Validação de raiz quadrada
 public class Main {
 
 	public static double calcularRaiz(int numero) throws IllegalArgumentException {

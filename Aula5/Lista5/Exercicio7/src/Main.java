@@ -1,11 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-// Exercicio 7 - Cadastro de alunos com validação
 public class Main {
 
-	private static final List<Aluno> alunosCadastrados = new ArrayList<>();
 	private static int totalAceitos = 0;
 	private static int totalRejeitados = 0;
 
@@ -16,18 +12,11 @@ public class Main {
 			double nota = ValidadorAluno.validarNota(notaTexto);
 
 			Aluno aluno = new Aluno(nome, idade, nota);
-			alunosCadastrados.add(aluno);
 			totalAceitos++;
 			System.out.println("Cadastro aceito: " + aluno);
 		} catch (NumberFormatException e) {
 			totalRejeitados++;
 			System.out.println("Cadastro rejeitado: idade ou nota em formato inválido.");
-		} catch (IdadeInvalidaException e) {
-			totalRejeitados++;
-			System.out.println("Cadastro rejeitado: " + e.getMessage());
-		} catch (NotaInvalidaException e) {
-			totalRejeitados++;
-			System.out.println("Cadastro rejeitado: " + e.getMessage());
 		} catch (IllegalArgumentException e) {
 			totalRejeitados++;
 			System.out.println("Cadastro rejeitado: " + e.getMessage());
@@ -60,14 +49,6 @@ public class Main {
 		System.out.println("Relatório final:");
 		System.out.println("Aceitos: " + totalAceitos);
 		System.out.println("Rejeitados: " + totalRejeitados);
-		System.out.println("Alunos cadastrados:");
-		if (alunosCadastrados.isEmpty()) {
-			System.out.println("Nenhum aluno cadastrado.");
-		} else {
-			for (Aluno a : alunosCadastrados) {
-				System.out.println("- " + a);
-			}
-		}
 
 		scanner.close();
 	}

@@ -1,7 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Exercicio 1 - Divisão segura
 public class Main {
 
 	public static void calcularDivisao(int numerador, int denominador) {

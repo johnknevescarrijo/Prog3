@@ -24,6 +24,6 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return String.format("Aluno [Nome: %-20s | Idade: %2d anos | Nota: %5.2f]", nome, idade, nota);
+		return "Aluno: " + nome + ", Idade: " + idade + ", Nota: " + nota;
 	}
 }

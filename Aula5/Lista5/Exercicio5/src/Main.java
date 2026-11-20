@@ -1,14 +1,12 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Exercicio 5 - Exceção propagada
-// throw: lança a exceção dentro do método
-// throws: avisa na assinatura do método que ele pode lançar a exceção
 public class Main {
 
-	public static void validarIdade(int idade) throws IdadeInvalidaException {
+	// throw lança a exceção dentro do método; throws declara na assinatura que o método pode lançar a exceção
+	public static void validarIdade(int idade) throws IllegalArgumentException {
 		if (idade < 0) {
-			throw new IdadeInvalidaException("A idade não pode ser negativa (" + idade + " anos).");
+			throw new IllegalArgumentException("A idade não pode ser negativa.");
 		}
 		System.out.println("Idade válida: " + idade + " anos.");
 	}
@@ -17,7 +15,7 @@ public class Main {
 		try {
 			validarIdade(idade);
 			System.out.println("Cadastro realizado para " + nome + ".");
-		} catch (IdadeInvalidaException e) {
+		} catch (IllegalArgumentException e) {
 			System.out.println("Erro no cadastro: " + e.getMessage());
 		}
 	}

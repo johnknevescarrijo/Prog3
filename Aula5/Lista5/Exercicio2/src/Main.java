@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Exercicio 2 - Conversão de texto para número
 public class Main {
 
 	public static void converterStringParaInteiro(String texto) {

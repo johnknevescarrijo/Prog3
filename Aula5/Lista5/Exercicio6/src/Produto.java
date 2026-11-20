@@ -1,4 +1,3 @@
-// Classe Produto com validação de preço e quantidade
 public class Produto {
 
 	private String descricao;
@@ -6,14 +5,14 @@ public class Produto {
 	private int quantidade;
 
 	public Produto(String descricao, double preco, int quantidade) throws IllegalArgumentException {
-		if (descricao == null || descricao.trim().isEmpty()) {
+		if (descricao.trim().isEmpty()) {
 			throw new IllegalArgumentException("A descrição do produto não pode ser vazia.");
 		}
 		if (preco < 0) {
-			throw new IllegalArgumentException("O preço não pode ser negativo (Valor informado: R$ " + preco + ").");
+			throw new IllegalArgumentException("O preço não pode ser negativo.");
 		}
 		if (quantidade < 0) {
-			throw new IllegalArgumentException("A quantidade não pode ser negativa (Valor informado: " + quantidade + " unidades).");
+			throw new IllegalArgumentException("A quantidade não pode ser negativa.");
 		}
 
 		this.descricao = descricao.trim();
@@ -39,7 +38,6 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return String.format("Produto [Descrição: %s | Preço Unitário: R$ %.2f | Quantidade: %d]",
-				descricao, preco, quantidade);
+		return "Produto: " + descricao + " - Preço: R$ " + preco + " - Quantidade: " + quantidade;
 	}
 }

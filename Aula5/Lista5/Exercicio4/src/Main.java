@@ -1,11 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Exercicio 4 - Acesso a posições de um vetor
 public class Main {
 
 	public static void main(String[] args) {
-		String[] nomes = { "Lucas Silva", "Mariana Costa", "Gabriel Santos", "Beatriz Oliveira", "Rafael Souza" };
+		String[] nomes = { "João", "Maria", "Pedro", "Ana", "Carlos" };
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Nomes cadastrados (índices de 0 a " + (nomes.length - 1) + "):");

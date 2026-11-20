@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Exercicio 6 - Registro de produto com tratamento de erros
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Main {
 			System.out.print("Quantidade em estoque: ");
 			String qtdTexto = scanner.nextLine();
 
-			double preco = Double.parseDouble(precoTexto.trim().replace(",", "."));
+			double preco = Double.parseDouble(precoTexto.trim());
 			int quantidade = Integer.parseInt(qtdTexto.trim());
 
 			Produto produto = new Produto(descricao, preco, quantidade);
