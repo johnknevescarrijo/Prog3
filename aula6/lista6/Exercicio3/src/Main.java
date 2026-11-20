@@ -1,8 +1,6 @@
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
-// Exercicio 3 - Cadastro e consulta de pessoas com HashMap
 public class Main {
 
 	public static void exibirMapa(HashMap<String, Integer> mapa) {
@@ -10,8 +8,8 @@ public class Main {
 			System.out.println("Nenhuma pessoa cadastrada.");
 			return;
 		}
-		for (Map.Entry<String, Integer> entrada : mapa.entrySet()) {
-			System.out.println(entrada.getKey() + " - " + entrada.getValue() + " anos");
+		for (String nome : mapa.keySet()) {
+			System.out.println(nome + " - " + mapa.get(nome) + " anos");
 		}
 	}
 
@@ -19,11 +17,11 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Integer> pessoas = new HashMap<>();
 
-		pessoas.put("Ana Silva", 21);
-		pessoas.put("Carlos Eduardo", 35);
-		pessoas.put("Beatriz Souza", 19);
-		pessoas.put("Daniel Oliveira", 42);
-		pessoas.put("Eduarda Santos", 28);
+		pessoas.put("João", 21);
+		pessoas.put("Maria", 35);
+		pessoas.put("Pedro", 19);
+		pessoas.put("Ana", 42);
+		pessoas.put("Lucas", 28);
 
 		int opcao = -1;
 		while (opcao != 0) {

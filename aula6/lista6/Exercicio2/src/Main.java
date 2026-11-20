@@ -1,7 +1,6 @@
 import java.util.HashSet;
 import java.util.Scanner;
 
-// Exercicio 2 - Palavras únicas com HashSet
 public class Main {
 
 	public static void main(String[] args) {

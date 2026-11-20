@@ -1,7 +1,6 @@
 import java.util.HashSet;
 import java.util.Scanner;
 
-// Exercicio 5 - Cadastro de participantes sem duplicatas
 public class Main {
 
 	public static void main(String[] args) {

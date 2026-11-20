@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Exercicio 1 - Lista de números com ArrayList
 public class Main {
 
 	public static void main(String[] args) {

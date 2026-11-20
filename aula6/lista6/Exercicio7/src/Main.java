@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-// Exercicio 7 - Registro de notas de alunos com Map e List
 public class Main {
 
 	public static double calcularMedia(List<Double> notas) {
@@ -23,10 +22,10 @@ public class Main {
 			System.out.println("Nenhum aluno cadastrado.");
 			return;
 		}
-		for (Map.Entry<String, List<Double>> entrada : registro.entrySet()) {
-			List<Double> notas = entrada.getValue();
-			System.out.printf("%s | Notas: %s | Média: %.2f\n",
-					entrada.getKey(), notas, calcularMedia(notas));
+		for (String nome : registro.keySet()) {
+			List<Double> notas = registro.get(nome);
+			System.out.printf("%s - Notas: %s - Média: %.2f\n",
+					nome, notas, calcularMedia(notas));
 		}
 	}
 
@@ -60,7 +59,7 @@ public class Main {
 						break;
 					}
 					System.out.print("Nota (0 a 10): ");
-					String notaStr = scanner.nextLine().trim().replace(",", ".");
+					String notaStr = scanner.nextLine().trim();
 					try {
 						double nota = Double.parseDouble(notaStr);
 						if (nota < 0.0 || nota > 10.0) {
@@ -81,7 +80,7 @@ public class Main {
 					String nomeConsulta = scanner.nextLine().trim();
 					if (registro.containsKey(nomeConsulta)) {
 						List<Double> notas = registro.get(nomeConsulta);
-						System.out.printf("Notas de %s: %s | Média: %.2f\n",
+						System.out.printf("Notas de %s: %s - Média: %.2f\n",
 								nomeConsulta, notas, calcularMedia(notas));
 					} else {
 						System.out.println("Aluno não encontrado.");

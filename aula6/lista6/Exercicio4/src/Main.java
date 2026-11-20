@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Exercicio 4 - Catálogo de livros com ArrayList
 public class Main {
 
 	public static void listarLivros(ArrayList<String> catalogo) {

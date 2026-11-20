@@ -1,8 +1,6 @@
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
-// Exercicio 6 - Controle de estoque com HashMap
 public class Main {
 
 	public static void main(String[] args) {
@@ -93,8 +91,8 @@ public class Main {
 					if (estoque.isEmpty()) {
 						System.out.println("Estoque vazio.");
 					} else {
-						for (Map.Entry<String, Integer> item : estoque.entrySet()) {
-							System.out.println(item.getKey() + ": " + item.getValue() + " un.");
+						for (String produto : estoque.keySet()) {
+							System.out.println(produto + ": " + estoque.get(produto) + " un.");
 						}
 					}
 					break;
