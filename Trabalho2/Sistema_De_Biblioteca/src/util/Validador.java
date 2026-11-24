@@ -171,4 +171,83 @@ public class Validador {
 		}
 		return 31;
 	}
+	
+	public static String  adicionarDias(String data,int dias) throws ValidacaoException {
+		validarData(data);
+		
+		if(dias < 0) {
+			throw new ValidacaoException("A quantidade de dias não pode ser negativa.");
+		}
+		String d = data.trim();
+		
+		int dia = Integer.parseInt(d.substring(0,2));
+		int mes = Integer.parseInt(d.substring(3,5));
+		int ano = Integer.parseInt(d.substring(6,10));
+		
+		int restante = dias;
+		while(restante > 0) {
+			int MaxMes = diasDoMes(mes,ano);
+			int faltaNoMes = MaxMes - dia;
+			if(restante <= faltaNoMes) {
+				dia += restante;
+				restante = 0;
+			}else {
+				restante -= (faltaNoMes +1 );
+				dia = 1;
+				mes++;
+				if (mes > 12) {
+					mes = 1;
+					ano ++;
+				}
+			}
+		}
+		return formatarData(dia,mes,ano);
+	}
+	
+	public static int calcularDiferencaDias(String dataInicio,String dataFim) throws ValidacaoException {
+		validarData(dataInicio);
+		validarData(dataFim);
+		
+		String dIni = dataInicio.trim();
+		int diaIni = Integer.parseInt(dIni.substring(0,2));
+		int mesIni = Integer.parseInt(dIni.substring(3,5));
+		int anoIni = Integer.parseInt(dIni.substring(6,10));
+		
+		String dFim = dataFim.trim();
+		int diaFim = Integer.parseInt(dFim.substring(0,2));
+		int mesFim = Integer.parseInt(dFim.substring(3,5));
+		int anoFim = Integer.parseInt(dFim.substring(6,10));
+
+		return dataParaDias(diaFim, mesFim, anoFim) - dataParaDias(diaIni,mesIni,anoIni);
+		
+	}
+	
+	
+	 private static int dataParaDias(int dia, int mes, int ano) {
+         int y = ano - 1;
+         int total = y * 365 + (y / 4) - (y / 100) + (y / 400);
+         for (int m = 1; m < mes; m++) {
+             total += diasDoMes(m, ano);
+         }
+         total += dia;
+         return total;
+     }
+
+     private static String formatarData(int dia, int mes, int ano) {
+         String sDia = (dia < 10 ? "0" : "") + dia;
+         String sMes = (mes < 10 ? "0" : "") + mes;
+         String sAno;
+         if (ano < 10) {
+             sAno = "000" + ano;
+         } else if (ano < 100) {
+             sAno = "00" + ano;
+         } else if (ano < 1000) {
+             sAno = "0" + ano;
+         } else {
+     	sAno = "" + ano;
+         }
+         return sDia + "/" + sMes + "/" + sAno;
+     }
+	
+	
 }
